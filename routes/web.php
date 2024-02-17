@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/cetak-berbintang', [WelcomeController::class, 'cetakPolaBintang'])->name('cetak-berbintang');
+Route::get('/cetak-angka', [WelcomeController::class, 'cetakPolaAngka'])->name('cetak-angka');
 
 Auth::routes();
 
