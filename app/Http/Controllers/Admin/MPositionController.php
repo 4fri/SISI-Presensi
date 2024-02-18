@@ -32,7 +32,8 @@ class MPositionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required']
+            'name' => ['required'],
+            'salary' => ['required'],
         ]);
 
         try {
@@ -68,12 +69,15 @@ class MPositionController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required']
+            'name' => ['required'],
+            'salary' => ['required'],
         ]);
 
         try {
             MPosition::where('id', $id)->update([
-                'name' => $request->name
+                'name' => $request->name,
+                'salary' => $request->salary,
+                'salary_note' => $request->salary_note,
             ]);
 
             return redirect()->route('index_position');

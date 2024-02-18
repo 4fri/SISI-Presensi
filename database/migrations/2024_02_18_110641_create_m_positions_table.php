@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('m_positions', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
+            $table->float('salary');
+            $table->string('salary_note', 50)->nullable();
             $table->timestamps();
         });
     }

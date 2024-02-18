@@ -50,6 +50,28 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="salary">Salary <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control @error('salary') is-invalid @enderror"
+                                            name="salary" value="{{ old('salary') ?? $position->salary }}" id="salary">
+                                        @error('salary')
+                                            <div class="invalid-feedback">
+                                                <strong><small>{{ $message }}</small></strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="salaryNote">Salary Note <span class="text-danger">*</span></label>
+                                        <input type="text"
+                                            class="form-control @error('salary_note') is-invalid @enderror"
+                                            name="salary_note" value="{{ old('salary_note') ?? $position->salary_note }}"
+                                            id="salaryNote" placeholder="Example: Daily, Weekly">
+                                        @error('salary_note')
+                                            <div class="invalid-feedback">
+                                                <strong><small>{{ $message }}</small></strong>
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <!-- /.card-body -->
 

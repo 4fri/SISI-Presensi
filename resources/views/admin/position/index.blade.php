@@ -40,6 +40,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Position Name</th>
+                                            <th>Salary</th>
+                                            <th>Salary Note</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -51,6 +53,8 @@
                                             <tr>
                                                 <td>{{ $count++ }}</td>
                                                 <td>{{ $position->name }}</td>
+                                                <td>{{ $position->salary }}</td>
+                                                <td>{{ $position->salary_note }}</td>
                                                 <td class="text-end">
                                                     <a href="{{ route('edit_position', $position->id) }}"
                                                         class="btn btn-outline-secondary btn-sm">Edit</a>
