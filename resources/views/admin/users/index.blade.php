@@ -13,8 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-left">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            {{-- <li class="breadcrumb-item"><a href="#">User Role</a></li> --}}
-                            <li class="breadcrumb-item active">User Roles</li>
+                            <li class="breadcrumb-item active">Users</li>
                         </ol>
                     </div>
                 </div>
@@ -27,19 +26,20 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3 text-end">
-                            <a class="btn btn-primary btn-sm" href="{{ route('create_user_role') }}">Tambah</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('create_users') }}">Tambah</a>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Data User Role</h3>
+                                <h3 class="card-title">Data Users</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped table-responsive-xl">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Role Name</th>
+                                            <th>Fullname</th>
+                                            <th>Email</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -47,24 +47,29 @@
                                         @php
                                             $count = 1;
                                         @endphp
-                                        @foreach ($roles as $role)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $count++ }}</td>
-                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
                                                 <td class="text-end">
-                                                    <a href="{{ route('edit_user_role', $role->id) }}"
-                                                        class="btn btn-outline-secondary btn-sm">Edit</a>
+                                                    <a href="{{ route('edit_users', $user->id) }}"
+                                                        class="btn btn-outline-secondary btn-sm my-1">Edit</a>
                                                     <a onclick="confirm('Are you sure you want to delete this role?');"
-                                                        href="{{ route('destroy_user_role', $role->id) }}"
-                                                        class="btn btn-outline-danger btn-sm">Delete</a>
+                                                        href="{{ route('destroy_users', $user->id) }}"
+                                                        class="btn btn-outline-danger btn-sm my-1">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                    {{ links() }}
                                 </table>
                             </div>
-                            <!-- /.card-body -->
+                            <!-- /.card-footer -->
+                        </div>
+                        <div class="container">
+                            <div class="pagination d-flex">
+                                <small>{{ $users->links() }}</small>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>

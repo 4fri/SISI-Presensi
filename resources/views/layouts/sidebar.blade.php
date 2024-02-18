@@ -32,7 +32,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('index_users') }}" class="nav-link">
                                 <i class="far fa-user nav-icon"></i>
                                 <p>Users</p>
                             </a>

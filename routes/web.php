@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserRole;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,12 +45,12 @@ Route::middleware(['auth'])->group(function () {
 
         //Users
         Route::prefix('users')->group(function () {
-            Route::get('/', [UserRole::class, 'index'])->name('index_user_role');
-            Route::get('/create', [UserRole::class, 'create'])->name('create_user_role');
-            Route::post('/store', [UserRole::class, 'store'])->name('store_user_role');
-            Route::get('/edit/{id}', [UserRole::class, 'edit'])->name('edit_user_role');
-            Route::put('/update/{id}', [UserRole::class, 'update'])->name('update_user_role');
-            Route::get('/destroy/{id}', [UserRole::class, 'destroy'])->name('destroy_user_role');
+            Route::get('/', [UsersController::class, 'index'])->name('index_users');
+            Route::get('/create', [UsersController::class, 'create'])->name('create_users');
+            Route::post('/store', [UsersController::class, 'store'])->name('store_users');
+            Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit_users');
+            Route::put('/update/{id}', [UsersController::class, 'update'])->name('update_users');
+            Route::get('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy_users');
         });
     });
 });
