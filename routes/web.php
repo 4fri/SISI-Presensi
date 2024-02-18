@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserRole;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,28 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        //User Role
+        Route::prefix('user-role')->group(function () {
+            Route::get('/', [UserRole::class, 'index'])->name('index_user_role');
+            Route::get('/create', [UserRole::class, 'create'])->name('create_user_role');
+            Route::post('/store', [UserRole::class, 'store'])->name('store_user_role');
+            Route::get('/edit/{id}', [UserRole::class, 'edit'])->name('edit_user_role');
+            Route::put('/update/{id}', [UserRole::class, 'update'])->name('update_user_role');
+            Route::get('/destroy/{id}', [UserRole::class, 'destroy'])->name('destroy_user_role');
+        });
+
+        //Users
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserRole::class, 'index'])->name('index_user_role');
+            Route::get('/create', [UserRole::class, 'create'])->name('create_user_role');
+            Route::post('/store', [UserRole::class, 'store'])->name('store_user_role');
+            Route::get('/edit/{id}', [UserRole::class, 'edit'])->name('edit_user_role');
+            Route::put('/update/{id}', [UserRole::class, 'update'])->name('update_user_role');
+            Route::get('/destroy/{id}', [UserRole::class, 'destroy'])->name('destroy_user_role');
+        });
+    });
 });
