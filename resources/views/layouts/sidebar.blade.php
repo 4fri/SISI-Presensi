@@ -9,7 +9,7 @@
                 <img src="{{ asset('build/assets/img/user1-128x128.jpg') }}" class="img-circle elevation-2" alt="User">
             </div>
             <div class="info">
-                <a class="d-block" href>{{ auth()->user()->name }}</a>
+                <a class="d-block" href="#">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -82,11 +82,17 @@
                         </p>
                     </a>
                 </li> --}}
-                <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+                <li class="nav-header">DATA EMPLOYEE</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-circle nav-icon"></i>
-                        <p>Level 1</p>
+                        <i class="fas fa-square nav-icon"></i>
+                        <p>Master Positions</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Employees</p>
                     </a>
                 </li>
             </ul>

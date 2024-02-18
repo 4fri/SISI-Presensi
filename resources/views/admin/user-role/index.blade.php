@@ -61,12 +61,16 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                    {{ links() }}
                                 </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
+                        <div class="container">
+                            <div class="pagination d-flex">
+                                <small>{{ $roles->links() }}</small>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.col -->
                 </div>
