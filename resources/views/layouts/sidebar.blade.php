@@ -84,7 +84,7 @@
                 </li> --}}
                 <li class="nav-header">DATA EMPLOYEE</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('index_position') }}" class="nav-link">
                         <i class="fas fa-square nav-icon"></i>
                         <p>Master Positions</p>
                     </a>
@@ -102,11 +102,20 @@
     <!-- /.sidebar -->
 
     <div class="container my-3">
-        <a href="{{ route('logout') }}" class="btn btn-outline-danger btn-sm dropdown" data-toggle="dropdown"
-            onclick="event.preventDefault(); confirm('Are you sure you want to logout?');
-        document.getElementById('logout-form').submit();">
-            <i class="fas fa-arrow-right"></i> Logout
-        </a>
+        <div class="row">
+            <div class="col">
+                <a href="{{ route('logout') }}" class="btn btn-outline-danger btn-sm dropdown" data-toggle="dropdown"
+                    onclick="event.preventDefault(); confirm('Are you sure you want to logout?'); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-arrow-right"></i> Logout
+                </a>
+            </div>
+            <div class="col">
+                <a href="" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+            </div>
+        </div>
     </div>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MPositionController;
 use App\Http\Controllers\Admin\UserRole;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
@@ -51,6 +52,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit_users');
             Route::put('/update/{id}', [UsersController::class, 'update'])->name('update_users');
             Route::get('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy_users');
+        });
+
+        //position
+        Route::prefix('position')->group(function () {
+            Route::get('/', [MPositionController::class, 'index'])->name('index_position');
+            Route::get('/create', [MPositionController::class, 'create'])->name('create_position');
+            Route::post('/store', [MPositionController::class, 'store'])->name('store_position');
+            Route::get('/edit/{id}', [MPositionController::class, 'edit'])->name('edit_position');
+            Route::put('/update/{id}', [MPositionController::class, 'update'])->name('update_position');
+            Route::get('/destroy/{id}', [MPositionController::class, 'destroy'])->name('destroy_position');
         });
     });
 });
