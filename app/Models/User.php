@@ -23,7 +23,6 @@ class User extends Authenticatable
         'email',
         'password',
         'photo',
-        'phone_number',
     ];
 
     /**
@@ -45,4 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function employee()
+    {
+        return $this->hasOne(DTEmployee::class);
+    }
 }

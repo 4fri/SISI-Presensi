@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MPositionController;
 use App\Http\Controllers\Admin\UserRole;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Employee\DTEmployeeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -63,5 +64,11 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update/{id}', [MPositionController::class, 'update'])->name('update_position');
             Route::get('/destroy/{id}', [MPositionController::class, 'destroy'])->name('destroy_position');
         });
+    });
+
+    Route::group(['middleware' => ['role:employee']], function () {
+        Route::get('/profile', [DTEmployeeController::class, 'show'])->name('profile_employee');
+        Route::get('/profile/edit', [DTEmployeeController::class, 'edit'])->name('edit_profile_employee');
+        Route::put('/profile/update', [DTEmployeeController::class, 'update'])->name('update_profile_employee');
     });
 });

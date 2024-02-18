@@ -67,8 +67,8 @@
                         </div>
                         <!-- /.card -->
                         <div class="container">
-                            <div class="pagination d-flex">
-                                <small>{{ $positions->links() }}</small>
+                            <div class="pagination d-flex justify-content-center">
+                                {!! $positions->links() !!}
                             </div>
                         </div>
                     </div>
