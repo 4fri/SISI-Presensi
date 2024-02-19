@@ -28,31 +28,22 @@
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
-                        <div class="col-7">
-                            <h2 class="lead"><b>{{ $user->name ?? '' }}</b></h2>
-                            <p class="text-muted text-sm"><b>ID Number: {{ $user->employee->id_card ?? '' }}</b> </p>
-                            <p class="text-muted text-sm"><b>Status Employee: {{ $status_employee ?? '' }}</b> </p>
-                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone
-                                    #: {{ $user->employee->phone_number ?? '' }}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-5 text-center">
-                            @if ($user->photo !== null)
-                                <img src="{{ asset('storage/' . $user->photo) }}" alt="user-avatar"
-                                    class="img-rounded img-fluid w-25">
-                            @else
-                                <i class="fas fa-user fa-5x"></i>
-                            @endif
-                        </div>
+                        <h2 class="lead"><b>{{ $user->name ?? '' }}</b></h2>
+                        <p class="text-muted text-sm"><b>ID Number: {{ $user->employee->id_card ?? '' }}</b> </p>
+                        <p class="text-muted text-sm"><b>Total Attendance: {{ count($attendances) ?? '' }}</b> </p>
+                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone
+                                #: {{ $user->employee->phone_number ?? '' }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="text-left">
-                        <a href="{{ route('edit_profile_employee') }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-pen"></i> Edit
-                        </a>
+                        <form action="{{ route('check_in') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-primary btn-sm">Check in</button>
+                        </form>
                     </div>
                 </div>
             </div>

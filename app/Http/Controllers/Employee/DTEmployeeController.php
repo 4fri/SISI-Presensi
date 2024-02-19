@@ -46,8 +46,17 @@ class DTEmployeeController extends Controller
         $user = User::with(['employee', 'employee.position'])
             ->findOrFail($auth->id);
 
+        if ($user->employee->status === 1) {
+            $status_employee = 'Active';
+        } elseif ($user->employee->status === 2) {
+            $status_employee = 'Travel Permit';
+        } else {
+            $status_employee = 'Not Active/Furlough';
+        }
+
         $data = [
-            'user' => $user
+            'user' => $user,
+            'status_employee' => $status_employee
         ];
 
         return view('employee.profile.profile', $data);
@@ -67,7 +76,7 @@ class DTEmployeeController extends Controller
 
         $data = [
             'positions' => $positions,
-            'user' => $user
+            'user' => $user,
         ];
 
         return view('employee.profile.edit', $data);

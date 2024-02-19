@@ -59,7 +59,8 @@
                                     <div class="form-group my-4">
                                         <label for="IdCard">ID Card Number <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control @error('id_card') is-invalid @enderror"
-                                            name="id_card" value="{{ old('id_card') ?? $user->employee->id_card }}"
+                                            name="id_card"
+                                            value="{{ isset($user->employee) ? $user->employee->id_card : (old('id_card') != '' ? old('id_card') : '') }}"
                                             id="IdCard">
                                         @error('id_card')
                                             <div class="invalid-feedback">
@@ -72,7 +73,7 @@
                                         <input type="number"
                                             class="form-control @error('phone_number') is-invalid @enderror"
                                             name="phone_number"
-                                            value="{{ old('phone_number') ?? $user->employee->phone_number }}"
+                                            value="{{ isset($user->employee) ? $user->employee->phone_number : (old('phone_number') != '' ? old('phone_number') : '') }}"
                                             id="phone_number" placeholder="Enter correct phone_number">
                                         @error('phone_number')
                                             <div class="invalid-feedback">

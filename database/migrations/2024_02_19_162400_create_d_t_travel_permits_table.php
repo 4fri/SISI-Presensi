@@ -11,26 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('d_t_employees', function (Blueprint $table) {
+        Schema::create('d_t_travel_permits', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('position_id')->nullable();
-            $table->string('id_card', 16)->unique(); // Changed the data type to string
-            $table->string('phone_number', 50)->nullable();
-            $table->tinyInteger('status')->comment(' 0 = Tidak Aktif/Cuti, 1 = Aktif, 2 = Dinas')->default(1);
+            $table->unsignedBigInteger('employee_id');
+            $table->tinyInteger('status')->comment('0 = Waiting, 1 = Accepted, 2 = Rejected')->default(0);
+            $table->string('description', 255)->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
-            $table->softDeletes();
 
-            $table->foreign('user_id')
+            $table->foreign('employee_id')
                 ->references('id')
-                ->on('users')
-                ->cascadeOnDelete();
-
-            $table->foreign('position_id')
-                ->references('id')
-                ->on('m_positions')
+                ->on('d_t_employees')
                 ->cascadeOnDelete();
 
             $table->foreign('created_by')
@@ -50,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('d_t_employees');
+        Schema::dropIfExists('d_t_travel_permits');
     }
 };

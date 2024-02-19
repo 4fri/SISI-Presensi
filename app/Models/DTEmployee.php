@@ -15,4 +15,9 @@ class DTEmployee extends Model
     {
         return $this->belongsTo(MPosition::class);
     }
+
+    public function checkInToday()
+    {
+        return $this->hasOne(DTAttendance::class, 'employee_id', 'id')->whereDate('check_in', now());
+    }
 }
