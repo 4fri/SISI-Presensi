@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-left">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             {{-- <li class="breadcrumb-item"><a href="#">User Role</a></li> --}}
-                            <li class="breadcrumb-item active">Create Users</li>
+                            <li class="breadcrumb-item active">Create Employees</li>
                         </ol>
                     </div>
                 </div>
@@ -29,30 +29,31 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Create User</h3>
+                                <h3 class="card-title">Create Employee</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('store_users') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('store_employees') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group my-4">
-                                        <label for="role_id">User Role <span class="text-danger">*</span></label>
-                                        <select class="form-control select-item @error('role_id') is-invalid @enderror"
-                                            name="role_id">
-                                            <option value="" hidden>Select Role...</option>
-                                            @foreach ($roles as $role)
-                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <label for="position_id">Employee Position <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control select-item @error('position_id') is-invalid @enderror"
+                                            name="position_id">
+                                            <option value="" hidden>Select Position...</option>
+                                            @foreach ($positions as $value)
+                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('role_id')
+                                        @error('position_id')
                                             <div class="invalid-feedback">
                                                 <strong><small>{{ $message }}</small></strong>
                                             </div>
                                         @enderror
                                     </div>
                                     <div class="form-group my-4">
-                                        <label for="userName">Name User <span class="text-danger">*</span></label>
+                                        <label for="userName">Fullname <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             name="name" value="{{ old('name') }}" id="userName"
                                             placeholder="Enter user fullname">
@@ -78,6 +79,27 @@
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="password" id="password">
                                         @error('password')
+                                            <div class="invalid-feedback">
+                                                <strong><small>{{ $message }}</small></strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <label for="id_card">ID Card Number <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control @error('id_card') is-invalid @enderror"
+                                            name="id_card" value="{{ old('id_card') }}" id="id_card">
+                                        @error('id_card')
+                                            <div class="invalid-feedback">
+                                                <strong><small>{{ $message }}</small></strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
+                                        <input type="number"
+                                            class="form-control @error('phone_number') is-invalid @enderror"
+                                            name="phone_number" value="{{ old('phone_number') }}" id="phone_number">
+                                        @error('phone_number')
                                             <div class="invalid-feedback">
                                                 <strong><small>{{ $message }}</small></strong>
                                             </div>

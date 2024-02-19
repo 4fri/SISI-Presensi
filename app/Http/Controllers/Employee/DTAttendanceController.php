@@ -18,6 +18,7 @@ class DTAttendanceController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**

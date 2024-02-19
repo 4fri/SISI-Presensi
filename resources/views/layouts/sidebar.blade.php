@@ -24,7 +24,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                                                                                                                                                                                       with font-awesome or any other icon font library -->
+                                                                                                                                                                                                                       with font-awesome or any other icon font library -->
                     <li class="nav-header">ADMIN</li>
 
                     <li class="nav-item">
@@ -59,9 +59,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('index_employees') }}" class="nav-link">
                             <i class="fas fa-users nav-icon"></i>
                             <p>Employees</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index_attendances') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>Attendances</p>
                         </a>
                     </li>
                 </ul>

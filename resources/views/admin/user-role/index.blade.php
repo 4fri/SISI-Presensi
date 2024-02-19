@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3 text-end">
-                            <a class="btn btn-primary btn-sm" href="{{ route('create_user_role') }}">Tambah</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('create_user_role') }}">Add</a>
                         </div>
                         <div class="card">
                             <div class="card-header">

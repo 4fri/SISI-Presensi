@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\EmployeesController;
 use App\Http\Controllers\Admin\MPositionController;
 use App\Http\Controllers\Admin\UserRole;
 use App\Http\Controllers\Admin\UsersController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\Employee\DTEmployeeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -64,6 +67,25 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [MPositionController::class, 'edit'])->name('edit_position');
             Route::put('/update/{id}', [MPositionController::class, 'update'])->name('update_position');
             Route::get('/destroy/{id}', [MPositionController::class, 'destroy'])->name('destroy_position');
+        });
+
+
+        Route::prefix('employees')->group(function () {
+            Route::get('/', [EmployeesController::class, 'index'])->name('index_employees');
+            Route::get('/create', [EmployeesController::class, 'create'])->name('create_employees');
+            Route::post('/store', [EmployeesController::class, 'store'])->name('store_employees');
+            // Route::get('/edit/{id}', [EmployeesController::class, 'edit'])->name('edit_employees');
+            // Route::put('/update/{id}', [EmployeesController::class, 'update'])->name('update_employees');
+            // Route::get('/destroy/{id}', [EmployeesController::class, 'destroy'])->name('destroy_employees');
+        });
+
+        Route::prefix('attendances')->group(function () {
+            Route::get('/', [AttendanceController::class, 'index'])->name('index_attendances');
+            // Route::get('/create', [AttendanceController::class, 'create'])->name('create_attendances');
+            // Route::post('/store', [AttendanceController::class, 'store'])->name('store_attendances');
+            // Route::get('/edit/{id}', [AttendanceController::class, 'edit'])->name('edit_attendances');
+            // Route::put('/update/{id}', [AttendanceController::class, 'update'])->name('update_attendances');
+            // Route::get('/destroy/{id}', [AttendanceController::class, 'destroy'])->name('destroy_attendances');
         });
     });
 
