@@ -74,15 +74,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [EmployeesController::class, 'index'])->name('index_employees');
             Route::get('/create', [EmployeesController::class, 'create'])->name('create_employees');
             Route::post('/store', [EmployeesController::class, 'store'])->name('store_employees');
+            Route::put('/update/{id}', [EmployeesController::class, 'update'])->name('update_employees');
         });
 
         Route::prefix('attendances')->group(function () {
             Route::get('/', [AttendanceController::class, 'index'])->name('index_attendances');
             Route::get('/show-detail/{id}', [AttendanceController::class, 'showDetail'])->name('show_detail_attendances');
-            Route::get('/show-detail/payroll/{id}', [AttendanceController::class, 'payrollAttendance'])->name('payroll_attendances');
             Route::post('/show-detail/payroll/store/{id}', [AttendanceController::class, 'storePayrollAttendance'])->name('store_payroll_attendances');
         });
     });
+
+    Route::get('/show-detail/payroll/{id}', [AttendanceController::class, 'payrollAttendance'])
+        ->name('payroll_attendances');
 
     Route::group(['middleware' => ['role:employee']], function () {
         Route::prefix('profile')->group(function () {

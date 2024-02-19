@@ -1,3 +1,9 @@
+<?php
+
+$user = App\Models\User::with('employee')->find(auth()->user()->id);
+
+?>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
 
@@ -24,7 +30,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                                                                                                                                                                                                                                                   with font-awesome or any other icon font library -->
+                                                                                                                                                                                                                                                                                                                                                   with font-awesome or any other icon font library -->
                     <li class="nav-header">ADMIN</li>
 
                     <li class="nav-item">
@@ -82,15 +88,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-home nav-icon"></i>
-                            <p>Off Work</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-plane nav-icon"></i>
-                            <p>Travel Permit</p>
+                        <a href="{{ route('payroll_attendances', $user->employee->id) }}" class="nav-link">
+                            <i class="fas fa-coins nav-icon"></i>
+                            <p>Payroll</p>
                         </a>
                     </li>
                 </ul>

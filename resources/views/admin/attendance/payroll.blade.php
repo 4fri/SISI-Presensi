@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-left">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Payroll <b>{{ $employee->user->name }}</b></li>
+                            <li class="breadcrumb-item active">Payroll <b>{{ $employee->user->name ?? '' }}</b></li>
                         </ol>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><b>{{ $employee->user->name }} </b>Payroll Detail</h3>
+                        <h3 class="card-title"><b>{{ $employee->user->name ?? '' }} </b>Payroll Detail</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -38,7 +38,7 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">No Telephone</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->phone_number }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->phone_number ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">ID Card Number</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->id_card }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->id_card ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -56,9 +56,9 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">Employee Position</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->position->name }}
-                                                    - {{ $employee->position->salary }} -
-                                                    {{ $employee->position->salary_note }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $employee->position->name ?? '' }}
+                                                    - {{ $employee->position->salary ?? '' }} -
+                                                    {{ $employee->position->salary_note ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">Attendance</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $attendanceHadir }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $attendanceHadir ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">Total Not Present</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $attendanceTidakHadir }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $attendanceTidakHadir ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">Attendance Pay Cut</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $attendancePayCut }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $attendancePayCut ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +94,8 @@
                                             <div class="info-box-content">
                                                 <span class="info-box-text text-center text-muted">Total Payment</span>
                                                 <span
-                                                    class="info-box-number text-center text-muted mb-0">{{ $totalPay }}</span>
+                                                    class="info-box-number text-center text-muted mb-0">{{ $totalPay ?? '' }}
+                                                    - {{ $currentMonthName ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +124,9 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-6">
-                                                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                                    @role('admin')
+                                                        <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                                    @endrole
                                                 </div>
                                             </div>
                                         </div>

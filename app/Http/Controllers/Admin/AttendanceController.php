@@ -51,12 +51,15 @@ class AttendanceController extends Controller
             ->where('status', 'Tidak Hadir')
             ->get();
 
+        $currentMonthName = Carbon::now()->monthName;
+
         $data = [
             'employee' => $employee,
             'attendanceHadir' => count($attendanceHadir),
             'attendanceTidakHadir' => count($attendanceTidakHadir),
             'attendancePayCut' => count($attendanceTidakHadir) * $employee->position->salary,
-            'totalPay' => count($attendanceHadir) * $employee->position->salary
+            'totalPay' => count($attendanceHadir) * $employee->position->salary,
+            'currentMonthName' => $currentMonthName
         ];
 
         return view('admin.attendance.payroll', $data);
