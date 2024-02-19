@@ -74,18 +74,13 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [EmployeesController::class, 'index'])->name('index_employees');
             Route::get('/create', [EmployeesController::class, 'create'])->name('create_employees');
             Route::post('/store', [EmployeesController::class, 'store'])->name('store_employees');
-            // Route::get('/edit/{id}', [EmployeesController::class, 'edit'])->name('edit_employees');
-            // Route::put('/update/{id}', [EmployeesController::class, 'update'])->name('update_employees');
-            // Route::get('/destroy/{id}', [EmployeesController::class, 'destroy'])->name('destroy_employees');
         });
 
         Route::prefix('attendances')->group(function () {
             Route::get('/', [AttendanceController::class, 'index'])->name('index_attendances');
-            // Route::get('/create', [AttendanceController::class, 'create'])->name('create_attendances');
-            // Route::post('/store', [AttendanceController::class, 'store'])->name('store_attendances');
-            // Route::get('/edit/{id}', [AttendanceController::class, 'edit'])->name('edit_attendances');
-            // Route::put('/update/{id}', [AttendanceController::class, 'update'])->name('update_attendances');
-            // Route::get('/destroy/{id}', [AttendanceController::class, 'destroy'])->name('destroy_attendances');
+            Route::get('/show-detail/{id}', [AttendanceController::class, 'showDetail'])->name('show_detail_attendances');
+            Route::get('/show-detail/payroll/{id}', [AttendanceController::class, 'payrollAttendance'])->name('payroll_attendances');
+            Route::post('/show-detail/payroll/store/{id}', [AttendanceController::class, 'storePayrollAttendance'])->name('store_payroll_attendances');
         });
     });
 

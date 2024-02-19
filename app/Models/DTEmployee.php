@@ -25,4 +25,14 @@ class DTEmployee extends Model
     {
         return $this->hasOne(DTAttendance::class, 'employee_id', 'id')->whereDate('check_in', now());
     }
+
+    public function attendance()
+    {
+        return $this->hasMany(DTAttendance::class, 'employee_id', 'id');
+    }
+
+    public function payroll()
+    {
+        return $this->hasOne(DTPayroll::class, 'employee_id', 'id');
+    }
 }

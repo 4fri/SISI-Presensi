@@ -59,11 +59,9 @@
                                                 <td>{{ $value->phone_number ?? '' }}</td>
                                                 <td>{{ $value->user->email ?? '' }}</td>
                                                 <td class="text-end">
-                                                    <a href="{{ route('edit_users', $value->id) }}"
-                                                        class="btn btn-outline-secondary btn-sm my-1">Edit</a>
-                                                    <a onclick="confirm('Are you sure you want to delete this role?');"
-                                                        href="{{ route('destroy_users', $value->id) }}"
-                                                        class="btn btn-outline-danger btn-sm my-1">Delete</a>
+                                                    <a href="{{ route('show_detail_attendances', $value->id) }}"
+                                                        class="btn btn-outline-info btn-sm my-1"><i
+                                                            class="fa fa-eye"></i>Detail</a>
                                                 </td>
                                             </tr>
                                         @endforeach

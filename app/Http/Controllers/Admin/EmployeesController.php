@@ -54,6 +54,8 @@ class EmployeesController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
+            $user->assignRole('employee');
+
             $employee = DTEmployee::create([
                 'user_id' => $user->id,
                 'position_id' => $request->position_id,
