@@ -56,7 +56,7 @@
                                                 } elseif ($value->status === 2) {
                                                     $status = 'Travel Permit';
                                                 } else {
-                                                    $status = 'Inactive/Furlough';
+                                                    $status = 'Off Work';
                                                 }
 
                                             @endphp
@@ -67,35 +67,7 @@
                                                 <td>{{ $value->id_card ?? '' }}</td>
                                                 <td>{{ $value->phone_number ?? '' }}</td>
                                                 <td>{{ $value->user->email ?? '' }}</td>
-                                                <td>
-                                                    <form action="{{ route('update_employees', $value->id) }}"
-                                                        method="POST" class="status-form"
-                                                        onsubmit="return confirm('Are you sure you want to update this status?');">
-                                                        @csrf
-                                                        @method('PUT')
-
-                                                        <div class="d-flex align-items-center">
-                                                            <select class="form-select status-dropdown" name="status"
-                                                                data-employee-id="{{ $value->id }}">
-                                                                <option value="1"
-                                                                    {{ $value->status === 1 ? 'selected' : '' }}>Active
-                                                                </option>
-                                                                <option value="2"
-                                                                    {{ $value->status === 2 ? 'selected' : '' }}>Travel
-                                                                    Permit</option>
-                                                                <option value="0"
-                                                                    {{ $value->status === 0 ? 'selected' : '' }}>
-                                                                    Inactive/Furlough</option>
-                                                            </select>
-                                                            @role('admin')
-                                                                <button
-                                                                    onclick="confirm('Are you sure you want to update this status?');"
-                                                                    type="submit"
-                                                                    class="btn btn-primary btn-sm ms-2">Update</button>
-                                                            @endrole
-                                                        </div>
-                                                    </form>
-                                                </td>
+                                                <td class="text-center">{{ $status }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

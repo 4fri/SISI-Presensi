@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         $role_admin = Role::create(['name' => 'admin']);
         $role_employee = Role::create(['name' => 'employee']);
 
-        \App\Models\User::factory()
-            ->count(15)
-            ->create()
-            ->each(function ($user) {
-                $user->assignRole('employee');
-            });
+        // \App\Models\User::factory()
+        //     ->count(15)
+        //     ->create()
+        //     ->each(function ($user) {
+        //         $user->assignRole('employee');
+        //     });
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

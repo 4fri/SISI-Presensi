@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AttendanceController;
-use App\Http\Controllers\Admin\EmployeesController;
-use App\Http\Controllers\Admin\MPositionController;
-use App\Http\Controllers\Admin\UserRole;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Employee\DTAttendanceController;
-use App\Http\Controllers\Employee\DTEmployeeController;
-use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserRole;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\OffWorkController;
+use App\Http\Controllers\Admin\EmployeesController;
+use App\Http\Controllers\Admin\MPositionController;
+use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\TravelPermitController;
+use App\Http\Controllers\Employee\DTEmployeeController;
+use App\Http\Controllers\Employee\DTAttendanceController;
 
 
 
@@ -74,18 +76,33 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [EmployeesController::class, 'index'])->name('index_employees');
             Route::get('/create', [EmployeesController::class, 'create'])->name('create_employees');
             Route::post('/store', [EmployeesController::class, 'store'])->name('store_employees');
-            Route::put('/update/{id}', [EmployeesController::class, 'update'])->name('update_employees');
+            // Route::put('/update/{id}', [EmployeesController::class, 'update'])->name('update_employees');
         });
 
         Route::prefix('attendances')->group(function () {
             Route::get('/', [AttendanceController::class, 'index'])->name('index_attendances');
             Route::get('/show-detail/{id}', [AttendanceController::class, 'showDetail'])->name('show_detail_attendances');
-            Route::post('/show-detail/payroll/store/{id}', [AttendanceController::class, 'storePayrollAttendance'])->name('store_payroll_attendances');
         });
     });
 
     Route::get('/show-detail/payroll/{id}', [AttendanceController::class, 'payrollAttendance'])
         ->name('payroll_attendances');
+    Route::post('/show-detail/payroll/store/{id}', [AttendanceController::class, 'storePayrollAttendance'])
+        ->name('store_payroll_attendances');
+
+    Route::prefix('off-work')->group(function () {
+        Route::get('/', [OffWorkController::class, 'index'])->name('index_off_work');
+        Route::get('/create', [OffWorkController::class, 'create'])->name('create_off_work')->middleware('role:employee');
+        Route::post('/store', [OffWorkController::class, 'store'])->name('store_off_work')->middleware('role:employee');
+        Route::put('/update/{id}', [OffWorkController::class, 'update'])->name('update_off_work')->middleware('role:admin');
+    });
+
+    Route::prefix('travel-permit')->group(function () {
+        Route::get('/', [TravelPermitController::class, 'index'])->name('index_travel_permit');
+        Route::get('/create', [TravelPermitController::class, 'create'])->name('create_travel_permit')->middleware('role:employee');
+        Route::post('/store', [TravelPermitController::class, 'store'])->name('store_travel_permit')->middleware('role:employee');
+        Route::put('/update/{id}', [TravelPermitController::class, 'update'])->name('update_travel_permit')->middleware('role:admin');
+    });
 
     Route::group(['middleware' => ['role:employee']], function () {
         Route::prefix('profile')->group(function () {

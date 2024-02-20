@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('d_t_travel_permits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
+            $table->date('date_off');
             $table->tinyInteger('status')->comment('0 = Waiting, 1 = Accepted, 2 = Rejected')->default(0);
             $table->string('description', 255)->nullable();
             $table->timestamps();

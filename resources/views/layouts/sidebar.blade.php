@@ -30,7 +30,7 @@ $user = App\Models\User::with('employee')->find(auth()->user()->id);
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                                                                                                                                                                                                                                                                                                                                                   with font-awesome or any other icon font library -->
+                                                                                                                                                                                                                                                                                                                                                                           with font-awesome or any other icon font library -->
                     <li class="nav-header">ADMIN</li>
 
                     <li class="nav-item">
@@ -76,6 +76,18 @@ $user = App\Models\User::with('employee')->find(auth()->user()->id);
                             <p>Attendances</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index_off_work') }}" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Apply Off Work</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index_travel_permit') }}" class="nav-link">
+                            <i class="fas fa-plane nav-icon"></i>
+                            <p>Apply Travel Permit</p>
+                        </a>
+                    </li>
                 </ul>
             @endrole
             @role('employee')
@@ -91,6 +103,18 @@ $user = App\Models\User::with('employee')->find(auth()->user()->id);
                         <a href="{{ route('payroll_attendances', $user->employee->id) }}" class="nav-link">
                             <i class="fas fa-coins nav-icon"></i>
                             <p>Payroll</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index_off_work') }}" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Apply Off Work</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('index_travel_permit') }}" class="nav-link">
+                            <i class="fas fa-plane nav-icon"></i>
+                            <p>Apply Travel Permit</p>
                         </a>
                     </li>
                 </ul>

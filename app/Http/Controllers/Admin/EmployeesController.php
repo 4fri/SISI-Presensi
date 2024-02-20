@@ -92,19 +92,19 @@ class EmployeesController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $employee = DTEmployee::find($id);
+        // $employee = DTEmployee::find($id);
 
-        if ($employee->status === $req->status) {
-            Toastr::info('Employee status not changed', 'Warning!');
-            return back();
-        } else {
-            $employee->status = $req->status;
-            $employee->updated_by = Auth::user()->id;
-            $employee->update();
+        // if ($employee->status === $req->status) {
+        //     Toastr::info('Employee status not changed', 'Warning!');
+        //     return back();
+        // } else {
+        //     $employee->status = $req->status;
+        //     $employee->updated_by = Auth::user()->id;
+        //     $employee->update();
 
-            Toastr::success('Employee status has been changed', 'Success!');
-            return back();
-        }
+        //     Toastr::success('Employee status has been changed', 'Success!');
+        //     return back();
+        // }
     }
 
     /**
