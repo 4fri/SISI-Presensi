@@ -61,8 +61,8 @@ class DTAttendanceController extends Controller
             ->where('user_id', $auth->id)->first();
 
         $currentTime = Carbon::now();
-        $start_time = Carbon::createFromTime(7, 0, 0); // Pukul 07.00
-        $end_time = Carbon::createFromTime(8, 30, 0); // Pukul 08.30
+        $start_time = Carbon::createFromTime(16, 0, 0); // Pukul 07.00
+        $end_time = Carbon::createFromTime(17, 30, 0); // Pukul 08.30
 
         $check_in = new DTAttendance();
         $check_in->employee_id = $employee->id;
@@ -70,6 +70,7 @@ class DTAttendanceController extends Controller
 
         // anda dapat check in diantara pukul 07.00 sampai dengan 08.30 setiap hari
         if (!isset($employee->checkInToday)) {
+            // dd('belum ada data');
             if ($currentTime->between($start_time, $end_time)) {
                 $status = 'Hadir';
                 $note = $auth->name . ' Has been checked in ' . now();
@@ -78,7 +79,10 @@ class DTAttendanceController extends Controller
                 $check_in->note = $note;
                 $check_in->save();
 
-                Toastr::error($note, $status);
+                // dd('data hadir');
+
+                Toastr::success($note, $status);
+
                 return redirect()->back();
             } else {
                 $status = 'Tidak Hadir';
@@ -87,11 +91,13 @@ class DTAttendanceController extends Controller
                 $check_in->status = $status;
                 $check_in->note = $note;
                 $check_in->save();
+                // dd('data tidak hadir');
 
                 Toastr::error($note, $status);
                 return redirect()->back();
             }
         } else {
+            // dd('keterangan data sudah ada');
             Toastr::warning('You have checked in ' . $employee->checkInToday->note, $employee->checkInToday->status);
             return redirect()->back();
         }

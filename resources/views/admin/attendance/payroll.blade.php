@@ -111,10 +111,10 @@
                                                         name="status_payment">
                                                         <option value="" hidden>Select Status...</option>
                                                         <option value="Already paid"
-                                                            {{ old('status_payment', $employee->payroll->status) == 'Already paid' ? 'selected' : '' }}>
+                                                            {{ optional($employee->payroll)->status === 'Already paid' ? 'selected' : '' }}>
                                                             Already paid</option>
                                                         <option value="Not yet paid"
-                                                            {{ old('status_payment', $employee->payroll->status) == 'Not yet paid' ? 'selected' : '' }}>
+                                                            {{ optional($employee->payroll)->status === 'Not yet paid' ? 'selected' : '' }}>
                                                             Not yet paid</option>
                                                     </select>
                                                     @error('status_payment')
