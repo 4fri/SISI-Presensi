@@ -19,6 +19,7 @@ class AttendanceController extends Controller
     {
         $employees = DTEmployee::with(['position', 'user'])->get();
 
+        //dwdwdw
         return view('admin.attendance.index', compact('employees'));
     }
 
